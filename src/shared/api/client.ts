@@ -12,7 +12,7 @@ class ApiClient {
         username: config.apiUsername,
         password: config.apiPassword,
       },
-      timeout: 15000,
+      timeout: config.apiTimeout,
       headers: {
         Accept: 'application/json',
       },

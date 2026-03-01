@@ -28,7 +28,7 @@ export const ProductTable = ({ products }: ProductTableProps) => {
         </thead>
         <tbody>
           {products.map((item, index) => (
-            <tr key={item.code ?? index}>
+            <tr key={item.code ? `${item.code}-${index}` : `row-${index}`}>
               <td className={cnProductTable('cell', 'code')}>{item.code}</td>
               <td className={cnProductTable('cell', 'ellipsis')} title={item.title ?? ''}>
                 {item.title}
@@ -51,7 +51,7 @@ export const ProductTable = ({ products }: ProductTableProps) => {
       </div>
       <div className={cnProductTable('cards')}>
         {products.map((item, index) => (
-          <article key={item.code ?? index} className={cnProductTable('card')}>
+          <article key={item.code ? `${item.code}-${index}` : `card-${index}`} className={cnProductTable('card')}>
             <p className={cnProductTable('title-line')} title={`${item.title ?? ''} | ${item.manufacturer ?? ''}`}>
               {item.code} {item.title}{' '}
               <span className={cnProductTable('manufacturer')}>| {item.manufacturer}</span>

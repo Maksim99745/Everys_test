@@ -1,3 +1,4 @@
+import { config } from '@/shared/config/env';
 import { apiClient } from './client';
 import type {
   ApiEnvelope,
@@ -10,7 +11,6 @@ const DEFAULT_ORDER_BY = 'code';
 const DEFAULT_ORDER_DIRECTION = 'asc';
 export const DEFAULT_COUNT = 3;
 const RETRY_DELAY_MS = 500;
-const RETRY_COUNT = 2;
 
 async function withRetry<T>(fn: () => Promise<T>, retries: number): Promise<T> {
   try {
@@ -44,7 +44,7 @@ export const productsApi = {
             signal: params.signal,
             params: paramsObj,
           }),
-        RETRY_COUNT
+        config.apiRetryCount
       );
 
       if (response.data.status === 'Error') {

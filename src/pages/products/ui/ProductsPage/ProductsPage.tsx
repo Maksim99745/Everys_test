@@ -2,8 +2,7 @@ import { Pagination } from '@/features/pagination';
 import { SearchBar } from '@/features/search-products';
 import { ProductTable } from '@/entities/product';
 import { ErrorMessage, Loader } from '@/shared/ui';
-import { Footer } from '@/widgets/footer';
-import { Header } from '@/widgets/header';
+import { DefaultLayout } from '@/app/layouts';
 import { bem } from '@/shared/lib/bem';
 import styles from './ProductsPage.module.scss';
 import { useProductsSearch } from '@/pages/products/model/useProductsSearch';
@@ -23,9 +22,9 @@ export const ProductsPage = () => {
   } = useProductsSearch();
 
   return (
-    <div className={cnProductsPage()}>
-      <Header />
-      <div className={cnProductsPage('container')}>
+    <DefaultLayout>
+      <div className={cnProductsPage()}>
+        <div className={cnProductsPage('container')}>
         <SearchBar isLoading={isLoading} onSubmit={handleSearchSubmit} />
 
         {error && <ErrorMessage message={error} />}
@@ -41,8 +40,8 @@ export const ProductsPage = () => {
             />
           </section>
         )}
+        </div>
       </div>
-      <Footer />
-    </div>
+    </DefaultLayout>
   );
 };
