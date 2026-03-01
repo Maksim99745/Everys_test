@@ -31,7 +31,7 @@ export const ProductsPage = () => {
         {isLoading && <Loader />}
         {!isLoading && !error && (
           <section className={cnProductsPage('section')}>
-            <ProductTable products={products} />
+            <ProductTable products={products} searchQuery={query.search} />
             <Pagination
               page={query.page}
               totalPages={totalPages}

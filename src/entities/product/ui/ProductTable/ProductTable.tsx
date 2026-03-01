@@ -6,11 +6,15 @@ const cnProductTable = bem(styles, 'product-table');
 
 interface ProductTableProps {
   products: StockItemApi[];
+  searchQuery?: string;
 }
 
-export const ProductTable = ({ products }: ProductTableProps) => {
+export const ProductTable = ({ products, searchQuery }: ProductTableProps) => {
   if (products.length === 0) {
-    return <div className={cnProductTable('empty')}>Товары не найдены</div>;
+    const message = searchQuery?.trim()
+      ? `По запросу «${searchQuery.trim()}» ничего не найдено`
+      : 'Ничего не найдено';
+    return <div className={cnProductTable('empty')}>{message}</div>;
   }
 
   return (
