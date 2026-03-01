@@ -1,5 +1,6 @@
 .products-page {
-  min-height: calc(100vh - 80px);  padding-bottom: 40px;
+  min-height: calc(100vh - 80px);
+  padding-bottom: 40px;
   background: #ffffff;
 
   @media (max-width: 767px) {
@@ -17,7 +18,7 @@
     padding: 0 10px 0;
     margin-top: -48px;
     background: #ffffff;
-    background-clip: content-box; 
+    background-clip: content-box;
   }
 }
 
