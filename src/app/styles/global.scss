@@ -30,10 +30,15 @@
   --color-mobile-block: #d8d8d8;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: #ffffff;
   color: #464646;
+  overflow-x: hidden;
 }
 
 *::-webkit-scrollbar {
