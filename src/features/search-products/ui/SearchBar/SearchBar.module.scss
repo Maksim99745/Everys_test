@@ -1,0 +1,32 @@
+.root {
+  background: #dbdbdb;
+  border-radius: 4px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 94px auto;
+  gap: 8px;
+  align-items: end;
+}
+
+.searchField {
+  min-width: 0;
+}
+
+.qtyField {
+  width: 100%;
+}
+
+.buttonWrap {
+  align-self: end;
+}
+
+@media (max-width: 768px) {
+  .root {
+    grid-template-columns: 1fr auto;
+    gap: 8px 10px;
+  }
+
+  .searchField {
+    grid-column: 1 / span 2;
+  }
+}

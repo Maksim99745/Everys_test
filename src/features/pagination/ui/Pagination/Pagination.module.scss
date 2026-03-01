@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.info {
+  font-size: 14px;
+  color: #565656;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .root {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

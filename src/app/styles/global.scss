@@ -1,0 +1,17 @@
+@import './reset.scss';
+
+:root {
+  --color-primary: #68459a;
+  --color-background: #ececec;
+  --color-surface: #f1f1f1;
+  --color-border: #cfcfcf;
+  --color-text-primary: #2f2f2f;
+  --color-text-secondary: #4b4b4b;
+  --color-placeholder: #b5b5b5;
+  --color-footer-bg: #e6e6e6;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}

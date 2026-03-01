@@ -1,0 +1,80 @@
+.root {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  border-bottom: 1px solid #c7c7c7;
+  padding: 10px 8px;
+  font-size: 14px;
+  color: #3a3a3a;
+}
+
+.table th {
+  font-weight: 700;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobileHeader {
+  display: none;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 8px;
+}
+
+.cards {
+  display: none;
+}
+
+.card {
+  padding: 8px 8px 10px;
+  border-top: 1px solid #c8c8c8;
+}
+
+.titleLine {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.titleLine strong {
+  font-weight: 700;
+}
+
+.description {
+  margin-bottom: 6px;
+}
+
+.meta {
+  font-size: 14px;
+}
+
+.empty {
+  padding: 32px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .table {
+    display: none;
+  }
+
+  .mobileHeader {
+    display: block;
+  }
+
+  .cards {
+    display: block;
+  }
+}
