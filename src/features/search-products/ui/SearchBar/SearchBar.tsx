@@ -1,46 +1,54 @@
 import { useState } from 'react';
+import { bem } from '@/shared/lib/bem';
 import { Button, Input } from '@/shared/ui';
+import { DEFAULT_COUNT } from '@/shared/api/products';
 import styles from './SearchBar.module.scss';
 
-interface SearchBarProps {
-  defaultTake: number;
-  isLoading: boolean;
-  onSubmit: (search: string, take: number) => void;
+const cnSearchBar = bem(styles, 'search-bar');
+
+function parseCount(value: string): number {
+  const num = parseInt(value, 10);
+  return Number.isFinite(num) && num >= 1 && num <= 100 ? num : DEFAULT_COUNT;
 }
 
-export const SearchBar = ({ defaultTake, isLoading, onSubmit }: SearchBarProps) => {
+interface SearchBarProps {
+  isLoading: boolean;
+  onSubmit: (search: string, count: number) => void;
+}
+
+export const SearchBar = ({ isLoading, onSubmit }: SearchBarProps) => {
   const [search, setSearch] = useState('');
-  const [take, setTake] = useState(defaultTake);
+  const [count, setCount] = useState(String(DEFAULT_COUNT));
 
   return (
     <form
-      className={styles.root}
-      onSubmit={(event) => {
-        event.preventDefault();
-        const normalizedTake = Number.isFinite(take) ? Math.min(100, Math.max(1, take)) : defaultTake;
-        onSubmit(search, normalizedTake);
+      className={cnSearchBar()}
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit(search, parseCount(count));
       }}
     >
-      <div className={styles.searchField}>
+      <div className={cnSearchBar('search-field')}>
         <Input
           label="Поиск"
           type="text"
           placeholder="Введите строку поиска"
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <div className={styles.qtyField}>
+      <div className={cnSearchBar('qty-field')}>
         <Input
           label="Кол-во"
           type="number"
           min={1}
           max={100}
-          value={take}
-          onChange={(event) => setTake(Number(event.target.value))}
+          value={count}
+          compact
+          onChange={(e) => setCount(e.target.value)}
         />
       </div>
-      <div className={styles.buttonWrap}>
+      <div className={cnSearchBar('button-wrap')}>
         <Button type="submit" disabled={isLoading}>
           Поиск
         </Button>

@@ -31,19 +31,19 @@ class ApiClient {
       }
 
       if (err.response?.status === 401) {
-        return { message: 'Ошибка авторизации API', status: 401 };
+        return { message: 'Ошибка доступа к API', status: 401 };
       }
 
       return {
         message:
           err.response?.data?.errors ||
           err.message ||
-          'Ошибка при обращении к серверу',
+          'Не удалось связаться с сервером',
         status: err.response?.status,
       };
     }
 
-    return { message: 'Неизвестная ошибка' };
+    return { message: 'Что-то пошло не так' };
   }
 }
 

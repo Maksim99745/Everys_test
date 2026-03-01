@@ -19,25 +19,16 @@ export interface ApiEnvelope<T> {
   requestId?: string;
 }
 
-export interface Product {
-  code: string;
-  title: string;
-  manufacturer: string;
-  description: string;
-  price: string;
-  stock: number;
-}
-
 export interface ProductsRequest {
   search?: string;
   skip: number;
-  take: number;
+  count: number;
   signal?: AbortSignal;
 }
 
 export interface ProductsResponse {
   totalItems: number;
-  items: Product[];
+  items: StockItemApi[];
 }
 
 export interface ApiError {

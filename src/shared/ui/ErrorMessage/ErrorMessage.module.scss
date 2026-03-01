@@ -1,7 +1,7 @@
-.root {
-  border: 1px solid #e3a6a6;
-  background: #fce8e8;
-  color: #812f2f;
+.error-message {
+  border: 1px solid var(--color-error-border);
+  background: var(--color-error-bg);
+  color: var(--color-error-text);
   border-radius: 6px;
   padding: 12px 16px;
 }

@@ -1,30 +1,26 @@
-import { buildStockFilter, mapStockItem } from './products';
+import { vi } from 'vitest';
+import { productsApi } from './products';
+import { apiClient } from './client';
 
-describe('products api helpers', () => {
-  it('buildStockFilter escapes quotes and joins fields', () => {
-    const filter = buildStockFilter("O'Reilly");
-    expect(filter).toContain("contains(title,'O''Reilly')");
-    expect(filter).toContain('contains(description');
-    expect(filter).toContain('contains(manufacturer');
-  });
+vi.mock('./client', () => ({
+  apiClient: {
+    http: { get: vi.fn() },
+    toApiError: (e: unknown) => e,
+  },
+}));
 
-  it('mapStockItem maps nullable fields', () => {
-    const product = mapStockItem({
-      code: null,
-      title: 'Title',
-      manufacturer: null,
-      description: null,
-      price: null,
-      stock: 10,
-    });
+describe('productsApi', () => {
+  it('getProducts returns items and totalItems', async () => {
+    vi.mocked(apiClient.http.get).mockResolvedValue({
+      data: {
+        status: 'Ok',
+        result: { totalItems: 2, items: [{ code: '1', title: 'A' }, { code: '2', title: 'B' }] },
+      },
+    } as never);
 
-    expect(product).toEqual({
-      code: '',
-      title: 'Title',
-      manufacturer: '',
-      description: '',
-      price: '',
-      stock: 10,
-    });
+    const data = await productsApi.getProducts({ skip: 0, count: 2 });
+    expect(data).toHaveProperty('totalItems');
+    expect(data).toHaveProperty('items');
+    expect(Array.isArray(data.items)).toBe(true);
   });
 });
